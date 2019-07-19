@@ -12,6 +12,7 @@ import UserNotifications
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var todoNameText: UITextField!
     
     // Realmインスタンスを取得する
     let realm = try! Realm()  // ←追加

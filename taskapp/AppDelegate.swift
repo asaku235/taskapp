@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications    // 追加
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -15,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let realm = try! Realm()  // Realmの初期化
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+
         // Override point for customization after application launch.
         // ユーザに通知の許可を求める --- ここから ---
         let center = UNUserNotificationCenter.current()
