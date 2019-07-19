@@ -10,9 +10,9 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var todoNameText: UITextField!
+    @IBOutlet weak var taskSearchBar: UISearchBar!
     
     // Realmインスタンスを取得する
     let realm = try! Realm()  // ←追加
@@ -21,12 +21,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)  // ←追加
+    
+    var searchResult = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
+        //デリゲート先を自分に設定する。
+        taskSearchBar.delegate = self
     }
     
     // 入力画面から戻ってきた時に TableView を更新させる
@@ -53,6 +57,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             inputViewController.task = task
         }
+    }
+    
+    //検索ボタン押下時の呼び出しメソッド
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //検索結果配列を空にする。
+        if(taskSearchBar.text == "") {
+            //検索文字列が空の場合はすべてを表示する。
+            taskArray = searchResult
+        } else {
+            let realm = try! Realm()
+            //検索文字列を含むデータを検索結果配列に追加する。
+            taskArray = realm.objects(Task.self).filter("title BEGINSWITH %@", searchText)
+        }
+        //テーブルを再読み込みする。
+        tableView.reloadData()
     }
     
     // MARK: UITableViewDataSourceプロトコルのメソッド

@@ -21,6 +21,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fDf-rD-zZp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <searchBar key="tableFooterView" contentMode="redraw" id="ERN-Xn-KZC">
+                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="KMD-Jy-KW4" detailTextLabel="aEH-U7-Ng4" style="IBUITableViewCellStyleSubtitle" id="qdI-sf-x1Q">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -60,13 +65,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="kBU-b7-lId">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="jXH-xh-jVa">
-                            <rect key="frame" x="53" y="7" width="269" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="i3u-BA-ukP">
                             <connections>
                                 <segue destination="qhg-6K-gjd" kind="show" id="T3Q-Kf-Dh9"/>
@@ -75,7 +73,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="fDf-rD-zZp" id="wup-ul-L96"/>
-                        <outlet property="todoNameText" destination="jXH-xh-jVa" id="9re-AV-AGB"/>
+                        <outlet property="taskSearchBar" destination="ERN-Xn-KZC" id="OMy-TR-LPf"/>
                         <segue destination="qhg-6K-gjd" kind="show" identifier="cellSegue" id="P7D-Go-Hxc"/>
                     </connections>
                 </viewController>
@@ -119,7 +117,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="W3M-8b-Bhx">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="W3M-8b-Bhx">
                                 <rect key="frame" x="0.0" y="306" width="375" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="VOl-iD-yEC"/>
@@ -144,6 +142,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4Dg-OH-UHx" firstAttribute="trailing" secondItem="OXM-75-bFW" secondAttribute="trailing" constant="10" id="04H-Mc-yz7"/>
+                            <constraint firstItem="LmO-ul-OGc" firstAttribute="top" secondItem="W3M-8b-Bhx" secondAttribute="bottom" constant="10" id="2kJ-Hh-298"/>
                             <constraint firstItem="LmO-ul-OGc" firstAttribute="top" secondItem="W3M-8b-Bhx" secondAttribute="bottom" constant="10" id="5Uw-od-fy3"/>
                             <constraint firstItem="W3M-8b-Bhx" firstAttribute="top" secondItem="a5c-sq-Hyw" secondAttribute="bottom" constant="10" id="9xu-EX-yUA"/>
                             <constraint firstItem="wAN-De-DI4" firstAttribute="leading" secondItem="4Dg-OH-UHx" secondAttribute="leading" constant="10" id="AqB-Xy-g3Q"/>
@@ -156,9 +155,12 @@
                             <constraint firstItem="8yU-Al-By9" firstAttribute="leading" secondItem="4Dg-OH-UHx" secondAttribute="leading" constant="10" id="a4k-HH-nkf"/>
                             <constraint firstItem="a5c-sq-Hyw" firstAttribute="leading" secondItem="4Dg-OH-UHx" secondAttribute="leading" constant="10" id="aHM-vd-q3c"/>
                             <constraint firstItem="4Dg-OH-UHx" firstAttribute="trailing" secondItem="8yU-Al-By9" secondAttribute="trailing" constant="10" id="bhL-T8-SSb"/>
+                            <constraint firstItem="W3M-8b-Bhx" firstAttribute="top" secondItem="a5c-sq-Hyw" secondAttribute="bottom" constant="10" id="gB2-9o-Tyf"/>
                             <constraint firstItem="8yU-Al-By9" firstAttribute="top" secondItem="LmO-ul-OGc" secondAttribute="bottom" constant="10" id="hj5-7i-J9G"/>
+                            <constraint firstItem="W3M-8b-Bhx" firstAttribute="trailing" secondItem="4Dg-OH-UHx" secondAttribute="trailing" id="huP-GY-wZO"/>
                             <constraint firstItem="4Dg-OH-UHx" firstAttribute="trailing" secondItem="LmO-ul-OGc" secondAttribute="trailing" constant="10" id="jId-yD-Uu1"/>
                             <constraint firstItem="OXM-75-bFW" firstAttribute="top" secondItem="wAN-De-DI4" secondAttribute="bottom" constant="10" id="kQO-BY-fE3"/>
+                            <constraint firstItem="W3M-8b-Bhx" firstAttribute="leading" secondItem="4Dg-OH-UHx" secondAttribute="leading" id="odK-d9-eRS"/>
                             <constraint firstItem="LmO-ul-OGc" firstAttribute="leading" secondItem="4Dg-OH-UHx" secondAttribute="leading" constant="10" id="tEa-8Y-LaV"/>
                             <constraint firstItem="wAN-De-DI4" firstAttribute="top" secondItem="vbh-7I-ulS" secondAttribute="bottom" constant="10" id="w0X-Qc-35f"/>
                             <constraint firstItem="4Dg-OH-UHx" firstAttribute="trailing" secondItem="vbh-7I-ulS" secondAttribute="trailing" constant="10" id="w5C-87-Rm8"/>
